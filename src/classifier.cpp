@@ -72,7 +72,7 @@ std::vector<float> Classifier::Predict(const std::vector<cv::Mat> &img_vec) {
 	std::vector<float> liveness_score;
 	caffe::Blob<float> *out = (caffe_net_ptr(net_))->output_blobs()[0];
 	for (int i = 0; i < num_input_; ++i) {
-		liveness_score.push_back(out->cpu_data()[1]);  // liveness score
+		liveness_score.push_back(out->cpu_data()[i *2 + 1]);  // liveness score
 	}
 	return liveness_score;
 }
